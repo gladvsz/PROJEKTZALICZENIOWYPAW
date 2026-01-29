@@ -3,6 +3,32 @@ from django.contrib import admin
 
 from .models import Samochod, Marka, ModelAuta, Klient, Wypozyczenie
 
+
+class MarkaAdmin(admin.ModelAdmin):
+    search_fields = ['nazwa']
+
+admin.site.register(Marka, MarkaAdmin)
+
+
+
+class ModelAutaAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['marka']
+
+admin.site.register(ModelAuta, ModelAutaAdmin)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class SamochodAdmin(admin.ModelAdmin):
     list_display = ['marka', 'model', 'rejestracja', 'rok_produkcji']
     list_filter = ['marka']
@@ -19,9 +45,10 @@ class KlientAdmin(admin.ModelAdmin):
 
 admin.site.register(Klient, KlientAdmin)
 
+
+
     
-admin.site.register(Marka)
-admin.site.register(ModelAuta)
+
 
 
 # Register your models here.

@@ -39,17 +39,7 @@ class ModelAuta(models.Model):
         verbose_name = "Model" 
         verbose_name_plural = "Modele"  
 
-
-class Status(models.Model):
-    nazwa = models.CharField(max_length=50, unique=True)
-    instrukcja = models.TextField(null=True, blank=True) 
-
-    def __str__(self):
-        return self.nazwa
-
-    class Meta:
-        verbose_name_plural = "Statusy"
-        ordering = ['nazwa']             
+         
 
 
 class Klient(models.Model):
