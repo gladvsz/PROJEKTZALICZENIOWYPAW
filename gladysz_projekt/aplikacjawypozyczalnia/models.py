@@ -26,22 +26,44 @@ class Marka(models.Model):
     class Meta:
         verbose_name = "Marka" 
         verbose_name_plural = "Marki"  
+        ordering = ['nazwa']
 
 class ModelAuta(models.Model):
     marka = models.ForeignKey(Marka, on_delete=models.CASCADE, verbose_name="Marka", null=True)
     nazwa = models.CharField(max_length=50, unique=True, verbose_name="Nazwa modelu") 
-
-    class Meta:
-        unique_together = ('marka', 'nazwa')
-        verbose_name = "Model auta"
-        verbose_name_plural = "Modele aut" 
 
     def __str__(self):
         return self.nazwa
 
     class Meta:
         verbose_name = "Model" 
-        verbose_name_plural = "Modele"            
+        verbose_name_plural = "Modele"  
+
+
+class Status(models.Model):
+    nazwa = models.CharField(max_length=50, unique=True)
+    instrukcja = models.TextField(null=True, blank=True) 
+
+    def __str__(self):
+        return self.nazwa
+
+    class Meta:
+        verbose_name_plural = "Statusy"
+        ordering = ['nazwa']             
+
+
+class Klient(models.Model):
+    imie = models.CharField(max_length=50)
+    nazwisko = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)
+
+    class Meta:
+        verbose_name_plural = "Klienci"
+        ordering = ['nazwisko']
+    
+    def __str__(self):
+        return f"{self.imie} {self.nazwisko}"
+
 
 class Samochod(models.Model):
     marka = models.ForeignKey(Marka, on_delete=models.PROTECT, verbose_name="Marka",)
@@ -70,8 +92,15 @@ class Samochod(models.Model):
         return f"{self.marka} {self.model}"
     
 
+class Wypozyczenie(models.Model):
+        auto = models.ForeignKey(Samochod, on_delete=models.CASCADE)
+        klient = models.ForeignKey(Klient, on_delete=models.CASCADE)
+        data_wypo = models.DateField()
+        data_zwrotu = models.DateField()
 
+        class Meta:
+            verbose_name_plural = "Wypożyczenia"
+            ordering = ['data_wypo']
 
-
-
-# Create your models here.
+        def __str__(self):
+            return f"Wynajem: {self.auto} dla {self.klient}"    
