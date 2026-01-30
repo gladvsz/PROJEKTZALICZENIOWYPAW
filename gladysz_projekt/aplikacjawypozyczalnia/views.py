@@ -64,3 +64,13 @@ class WypozyczenieDetail(RetrieveUpdateDestroyAPIView):
 def klient_lista_html(request):
     klienci = Klient.objects.all()
     return render(request, "aplikacjawypozyczalnia/klienci_lista.html", {'klienci': klienci})    
+
+
+def samochod_lista_html(request):
+    marka_id = request.GET.get('marka')
+    if marka_id:
+        samochody = Samochod.objects.filter(model__marka_id=marka_id)
+    else:
+        samochody = Samochod.objects.all()
+        
+    return render(request, "aplikacjawypozyczalnia/samochody_lista.html", {'samochody': samochody})

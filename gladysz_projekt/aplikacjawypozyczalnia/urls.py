@@ -19,5 +19,6 @@ urlpatterns = [
     path('wypozyczenia_cbv/', views.WypozyczenieList.as_view(), name='wypozyczenie-list'),
     path('wypozyczenia_cbv/<int:pk>/', views.WypozyczenieDetail.as_view(), name='wypozyczenie-detail'),
 
-    path('html/klienci/', views.klient_lista_html, name='klient-list-html')
+    path('html/klienci/', views.klient_lista_html, name='klient-list-html'),
+    path('html/samochody/', views.samochod_lista_html, name='samochod-lista-html'),
 ]

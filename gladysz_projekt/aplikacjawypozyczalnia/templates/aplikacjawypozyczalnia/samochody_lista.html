@@ -1,0 +1,9 @@
+<h1>Nasze Auta</h1>
+<ul>
+    {% for auto in samochody %}
+        <li>{{ auto.model.marka.nazwa }} {{ auto.model.nazwa }}</li>
+    {% empty %}
+        <li>Brak dostępnych aut.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'klient-lista-html' %}">Zobacz listę klientów</a>

@@ -17,10 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
+from aplikacjawypozyczalnia import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('aplikacjawypozyczalnia.urls'))
+    path('api/', include('aplikacjawypozyczalnia.urls')),
+
+    path('html/klienci/', views.klient_lista_html, name='klient-lista-html'),
+    path('html/samochody/', views.samochod_lista_html, name='samochod-lista-html'),
 ]
 
 urlpatterns += [
