@@ -1,0 +1,8 @@
+<h1>Lista Klientów Wypożyczalni</h1>
+<ul>
+    {% for klient in klienci %}
+        <li>{{ klient.imie }} {{ klient.nazwisko }} - {{ klient.email }}</li>
+    {% empty %}
+        <li>Brak klientów w systemie.</li>
+    {% endfor %}
+</ul>

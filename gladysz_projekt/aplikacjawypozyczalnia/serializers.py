@@ -41,7 +41,7 @@ class KlientSerializer(serializers.ModelSerializer):
         return value   
     
     def validate_nazwisko(self, value):
-        if not value.replace('-').isalpha():
+        if not value.replace('-', '').isalpha():
             raise serializers.ValidationError("Nazwisko może zawierać tylko litery!")
             
         if not value[0].isupper():
@@ -55,7 +55,7 @@ class SamochodSerializer(serializers.ModelSerializer):
         model = Samochod
         fields = [
             'id', 'marka', 'model', 'rok_produkcji', 'rejestracja', 
-            'vin', 'naped', 'paliwo', 'skrzynia', 'moc', 'pojemnosc'
+            'vin', 'napęd', 'paliwo', 'przekładnia', 'moc', 'pojemnosc'
         ]
         read_only_fields = ['id']
 
